@@ -1,22 +1,31 @@
-m = 3;
+m = 4;
 k = m+1;
-d = [ 1, 1;
-      1, 2
-      2, 2;
-      2, 1;
+
+d = [ 1, 8;
+      2, 6;
+      3, 4;
+      4, 5;
+      5, 4;
+      6, 2;
+      7, 1;
     ];
+
 p = length(d);
 
 vecteur_noeud = 1:p+k+1;
-interval = 1:0.5:10;
-S = zeros(length(interval), 2);
+
+interval = k:0.05:p+1;
+x = zeros(length(interval), 1);
+y = zeros(length(interval), 1);
+
+
+
 for i=1:length(interval)
   for j=1:p
-     S(i, 1) = S(i, 1) + d(j)*fonctionN(vecteur_noeud, interval(i), m, j);
-     S(i, 2) = S(i, 1) + d(j)*fonctionN(vecteur_noeud, interval(i), m, j);
+    x(i) = x(i) + d(j, 1)*fonctionN(vecteur_noeud, interval(i), m, j);
+    y(i) = y(i) + d(j, 2)*fonctionN(vecteur_noeud, interval(i), m, j);
   end
 end
 
-plot(S(:, 1), S(:, 2))
+plot(x, y)
 pause;
-% fonctionN(vecteur_noeud, t, m, i)
